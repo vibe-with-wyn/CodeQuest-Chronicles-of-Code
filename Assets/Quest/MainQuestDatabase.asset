@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98a7aad384136c84cb9bb4e73c7f3422, type: 3}
+  m_Name: MainQuestDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::QuestDatabase
+  allQuests:
+  - questId: welcome_adventure
+    questTitle: Welcome to the Adventure
+    questDescription: You've just arrived in this mysterious land. Begin your journey
+      by getting oriented and finding the local settlement.
+    questImage: {fileID: 0}
+    isCompleted: 0
+    isActive: 0
+    objectives:
+    - objectiveTitle: Go find the village
+      objectiveDescription: Locate the nearby village to start your adventure. Follow
+        the main path eastward.
+      isCompleted: 0
+      isActive: 0
+      isOptional: 0
+      targetCount: 0
+      currentCount: 0
+    - objectiveTitle: Look for the guild
+      objectiveDescription: Find the adventurer's guild in the village. It should
+        be the largest building with a wooden sign.
+      isCompleted: 0
+      isActive: 0
+      isOptional: 0
+      targetCount: 0
+      currentCount: 0
+    - objectiveTitle: Register as an adventurer
+      objectiveDescription: Complete your registration at the guild to become an
+        official adventurer.
+      isCompleted: 0
+      isActive: 0
+      isOptional: 0
+      targetCount: 0
+      currentCount: 0
+    nextQuestId: 

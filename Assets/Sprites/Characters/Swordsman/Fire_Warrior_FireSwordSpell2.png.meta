@@ -1,0 +1,692 @@
+fileFormatVersion: 2
+guid: 7d83de0e0fa507d4b838837c9f49a307
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -684542048403096197
+    second: Fire_Warrior_FireSwordSpell2_0
+  - first:
+      213: -5680531003996847560
+    second: Fire_Warrior_FireSwordSpell2_1
+  - first:
+      213: -2320724324162201156
+    second: Fire_Warrior_FireSwordSpell2_2
+  - first:
+      213: -5161083688730955454
+    second: Fire_Warrior_FireSwordSpell2_3
+  - first:
+      213: 5913820534251794139
+    second: Fire_Warrior_FireSwordSpell2_4
+  - first:
+      213: 9000678921068611981
+    second: Fire_Warrior_FireSwordSpell2_5
+  - first:
+      213: -945518927093602737
+    second: Fire_Warrior_FireSwordSpell2_6
+  - first:
+      213: 8425603187437035413
+    second: Fire_Warrior_FireSwordSpell2_7
+  - first:
+      213: -1345637916569078910
+    second: Fire_Warrior_FireSwordSpell2_8
+  - first:
+      213: -8804184088570859128
+    second: Fire_Warrior_FireSwordSpell2_9
+  - first:
+      213: -7532339468834413384
+    second: Fire_Warrior_FireSwordSpell2_10
+  - first:
+      213: 298965471589506020
+    second: Fire_Warrior_FireSwordSpell2_11
+  - first:
+      213: -2834634696856527210
+    second: Fire_Warrior_FireSwordSpell2_12
+  - first:
+      213: 2428154050697417232
+    second: Fire_Warrior_FireSwordSpell2_13
+  - first:
+      213: 1684138611691717363
+    second: Fire_Warrior_FireSwordSpell2_14
+  - first:
+      213: 2407861658180356970
+    second: Fire_Warrior_FireSwordSpell2_15
+  - first:
+      213: 6256355507337375431
+    second: Fire_Warrior_FireSwordSpell2_16
+  - first:
+      213: -7932283785389912180
+    second: Fire_Warrior_FireSwordSpell2_17
+  - first:
+      213: -2321732063260240467
+    second: Fire_Warrior_FireSwordSpell2_18
+  - first:
+      213: -2782493728749516852
+    second: Fire_Warrior_FireSwordSpell2_19
+  - first:
+      213: -5693145457358472610
+    second: Fire_Warrior_FireSwordSpell2_20
+  - first:
+      213: 2498206699285012929
+    second: Fire_Warrior_FireSwordSpell2_21
+  - first:
+      213: 6598013818994547319
+    second: Fire_Warrior_FireSwordSpell2_22
+  - first:
+      213: 8790326107912063453
+    second: Fire_Warrior_FireSwordSpell2_23
+  - first:
+      213: 78609929178373676
+    second: Fire_Warrior_FireSwordSpell2_24
+  - first:
+      213: 5241286158103308205
+    second: Fire_Warrior_FireSwordSpell2_25
+  - first:
+      213: -7587403231185410134
+    second: Fire_Warrior_FireSwordSpell2_26
+  - first:
+      213: -5113985057784034973
+    second: Fire_Warrior_FireSwordSpell2_27
+  - first:
+      213: 2164273573701388783
+    second: Fire_Warrior_FireSwordSpell2_28
+  - first:
+      213: 3755027459361751644
+    second: Fire_Warrior_FireSwordSpell2_29
+  - first:
+      213: -7027153339486593103
+    second: Fire_Warrior_FireSwordSpell2_30
+  - first:
+      213: -3050136014792527851
+    second: Fire_Warrior_FireSwordSpell2_31
+  - first:
+      213: 5493547130645305565
+    second: Fire_Warrior_FireSwordSpell2_32
+  - first:
+      213: -3329643801023460143
+    second: Fire_Warrior_FireSwordSpell2_33
+  - first:
+      213: -1622127955228993674
+    second: Fire_Warrior_FireSwordSpell2_34
+  - first:
+      213: 6910146026936462202
+    second: Fire_Warrior_FireSwordSpell2_35
+  - first:
+      213: 4923081308846177345
+    second: Fire_Warrior_FireSwordSpell2_36
+  - first:
+      213: -247253937250821287
+    second: Fire_Warrior_FireSwordSpell2_37
+  - first:
+      213: 45196805494373467
+    second: Fire_Warrior_FireSwordSpell2_38
+  - first:
+      213: -4286284464991562726
+    second: Fire_Warrior_FireSwordSpell2_39
+  - first:
+      213: -5270527992504717977
+    second: Fire_Warrior_FireSwordSpell2_40
+  - first:
+      213: 2307654456879703479
+    second: Fire_Warrior_FireSwordSpell2_41
+  - first:
+      213: 3650465275218685232
+    second: Fire_Warrior_FireSwordSpell2_42
+  - first:
+      213: -8581922258211786485
+    second: Fire_Warrior_FireSwordSpell2_43
+  - first:
+      213: 7205158232166426719
+    second: Fire_Warrior_FireSwordSpell2_44
+  - first:
+      213: -714823740585578371
+    second: Fire_Warrior_FireSwordSpell2_45
+  - first:
+      213: 6776661378235993971
+    second: Fire_Warrior_FireSwordSpell2_46
+  - first:
+      213: -4441893887160174576
+    second: Fire_Warrior_FireSwordSpell2_47
+  - first:
+      213: -6647844105735701679
+    second: Fire_Warrior_FireSwordSpell2_48
+  - first:
+      213: -6202948797070378631
+    second: Fire_Warrior_FireSwordSpell2_49
+  - first:
+      213: 5025279041506753645
+    second: Fire_Warrior_FireSwordSpell2_50
+  - first:
+      213: -4974266320224802404
+    second: Fire_Warrior_FireSwordSpell2_51
+  - first:
+      213: 2281602436618864469
+    second: Fire_Warrior_FireSwordSpell2_52
+  - first:
+      213: -3365429098186156254
+    second: Fire_Warrior_FireSwordSpell2_53
+  - first:
+      213: 4749242836413593362
+    second: Fire_Warrior_FireSwordSpell2_54
+  - first:
+      213: 8552508109909273576
+    second: Fire_Warrior_FireSwordSpell2_55
+  - first:
+      213: -8555701221118760648
+    second: Fire_Warrior_FireSwordSpell2_56
+  - first:
+      213: 4916064112521206239
+    second: Fire_Warrior_FireSwordSpell2_57
+  - first:
+      213: -6481479533952123095
+    second: Fire_Warrior_FireSwordSpell2_58
+  - first:
+      213: 8409915320374342704
+    second: Fire_Warrior_FireSwordSpell2_59
+  - first:
+      213: 5046452636802537137
+    second: Fire_Warrior_FireSwordSpell2_60
+  - first:
+      213: -9041844197088801287
+    second: Fire_Warrior_FireSwordSpell2_61
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Fire_Warrior_FireSwordSpell2_0
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 0
+        width: 121
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7d7d1342a40086f0800000000000000
+      internalID: -684542048403096197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire_Warrior_FireSwordSpell2_1
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 0
+        width: 121
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 832cc2b0623ba21b0800000000000000
+      internalID: -5680531003996847560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire_Warrior_FireSwordSpell2_2
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 0
+        width: 121
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb914bcd5812bcfd0800000000000000
+      internalID: -2320724324162201156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire_Warrior_FireSwordSpell2_4
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 0
+        width: 121
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bde2d71717c121250800000000000000
+      internalID: 5913820534251794139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire_Warrior_FireSwordSpell2_5
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 0
+        width: 121
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8904a38ac5d8ec70800000000000000
+      internalID: 9000678921068611981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire_Warrior_FireSwordSpell2_6
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 0
+        width: 121
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f466d2e9b87d0e2f0800000000000000
+      internalID: -945518927093602737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire_Warrior_FireSwordSpell2_8
+      rect:
+        serializedVersion: 2
+        x: 889
+        y: 0
+        width: 121
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2837a92c175535de0800000000000000
+      internalID: -1345637916569078910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire_Warrior_FireSwordSpell2_10
+      rect:
+        serializedVersion: 2
+        x: 1035
+        y: 0
+        width: 121
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b468704921c77790800000000000000
+      internalID: -7532339468834413384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire_Warrior_FireSwordSpell2_11
+      rect:
+        serializedVersion: 2
+        x: 1180
+        y: 0
+        width: 121
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4eb133e2383262400800000000000000
+      internalID: 298965471589506020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire_Warrior_FireSwordSpell2_12
+      rect:
+        serializedVersion: 2
+        x: 1323
+        y: 0
+        width: 121
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69e9ed103ca59a8d0800000000000000
+      internalID: -2834634696856527210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire_Warrior_FireSwordSpell2_14
+      rect:
+        serializedVersion: 2
+        x: 1465
+        y: 0
+        width: 121
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f28766f4234f5710800000000000000
+      internalID: 1684138611691717363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire_Warrior_FireSwordSpell2_15
+      rect:
+        serializedVersion: 2
+        x: 1609
+        y: 0
+        width: 121
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6b8f14bb617a6120800000000000000
+      internalID: 2407861658180356970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire_Warrior_FireSwordSpell2_17
+      rect:
+        serializedVersion: 2
+        x: 1754
+        y: 0
+        width: 121
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8f4e3a9ceddae190800000000000000
+      internalID: -7932283785389912180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire_Warrior_FireSwordSpell2_18
+      rect:
+        serializedVersion: 2
+        x: 1899
+        y: 0
+        width: 121
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da51db15dfc87cfd0800000000000000
+      internalID: -2321732063260240467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire_Warrior_FireSwordSpell2_19
+      rect:
+        serializedVersion: 2
+        x: 2042
+        y: 0
+        width: 121
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc7022c22b89269d0800000000000000
+      internalID: -2782493728749516852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire_Warrior_FireSwordSpell2_21
+      rect:
+        serializedVersion: 2
+        x: 2178
+        y: 0
+        width: 121
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c16266c1c96ba220800000000000000
+      internalID: 2498206699285012929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 4b1510cada163d3428f7d625c1b5b604
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":100.0,"y":80.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Fire_Warrior_FireSwordSpell2_0: -684542048403096197
+      Fire_Warrior_FireSwordSpell2_1: -5680531003996847560
+      Fire_Warrior_FireSwordSpell2_10: -7532339468834413384
+      Fire_Warrior_FireSwordSpell2_11: 298965471589506020
+      Fire_Warrior_FireSwordSpell2_12: -2834634696856527210
+      Fire_Warrior_FireSwordSpell2_13: 2428154050697417232
+      Fire_Warrior_FireSwordSpell2_14: 1684138611691717363
+      Fire_Warrior_FireSwordSpell2_15: 2407861658180356970
+      Fire_Warrior_FireSwordSpell2_16: 6256355507337375431
+      Fire_Warrior_FireSwordSpell2_17: -7932283785389912180
+      Fire_Warrior_FireSwordSpell2_18: -2321732063260240467
+      Fire_Warrior_FireSwordSpell2_19: -2782493728749516852
+      Fire_Warrior_FireSwordSpell2_2: -2320724324162201156
+      Fire_Warrior_FireSwordSpell2_20: -5693145457358472610
+      Fire_Warrior_FireSwordSpell2_21: 2498206699285012929
+      Fire_Warrior_FireSwordSpell2_3: -5161083688730955454
+      Fire_Warrior_FireSwordSpell2_4: 5913820534251794139
+      Fire_Warrior_FireSwordSpell2_5: 9000678921068611981
+      Fire_Warrior_FireSwordSpell2_6: -945518927093602737
+      Fire_Warrior_FireSwordSpell2_7: 8425603187437035413
+      Fire_Warrior_FireSwordSpell2_8: -1345637916569078910
+      Fire_Warrior_FireSwordSpell2_9: -8804184088570859128
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
