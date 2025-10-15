@@ -7,11 +7,18 @@ public class GameWorldContextController : MonoBehaviour
 {
     [SerializeField] private AudioSource narrationAudio;
     [SerializeField] private Button skipButton;
+    [SerializeField] private Canvas gameWorldCanvas; // Add reference to the canvas
 
     private bool isSkipping = false;
 
     void Start()
     {
+        // If canvas is not assigned, try to find it
+        if (gameWorldCanvas == null)
+        {
+            gameWorldCanvas = GetComponentInChildren<Canvas>();
+        }
+
         if (narrationAudio != null)
         {
             narrationAudio.Play();
@@ -60,6 +67,13 @@ public class GameWorldContextController : MonoBehaviour
 
     private void LoadNextScene()
     {
+        // Immediately hide the GameWorldContext UI to prevent flashing
+        if (gameWorldCanvas != null)
+        {
+            gameWorldCanvas.enabled = false;
+            Debug.Log("GameWorldContext UI hidden before scene transition");
+        }
+
         if (LoadingScreenController.Instance != null)
         {
             LoadingScreenController.Instance.LoadScene("OakWoodsOfSyntax");
