@@ -3,12 +3,51 @@ using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [Header("Health")]
     [SerializeField] private int maxHP = 100;
+
+    [Header("Death/Respawn Timing")]
+    [Tooltip("How long to wait for the death animation to finish (seconds). If Use Animation Event is on, this is a safety timeout.")]
+    [SerializeField] private float deathAnimationDuration = 3.0f;
+
+    [Tooltip("Extra delay after the death animation BEFORE teleporting to the checkpoint. Set 0 to avoid 'stand up then teleport'.")]
+    [SerializeField] private float preTeleportDelay = 0.0f;
+
+    public enum UIUnlockMoment { AfterDeathAnimation, AfterTeleport }
+
+    [Tooltip("When to re-enable UI inputs (buttons).")]
+    [SerializeField] private UIUnlockMoment uiUnlockMoment = UIUnlockMoment.AfterTeleport;
+
+    [Tooltip("Additional delay applied after the chosen unlock moment before enabling inputs.")]
+    [SerializeField] private float uiUnlockDelay = 0.0f;
+
+    [Header("Deterministic End Of Death Animation")]
+    [Tooltip("If true, wait for an Animator event to end the death wait. Call OnDeathAnimationComplete() from the last frame of the death clip.")]
+    [SerializeField] private bool useDeathAnimEvent = false;
+
+    [Tooltip("Max time to wait for the animation event (fallback). Uses Death Animation Duration if <= 0.")]
+    [SerializeField] private float deathAnimEventTimeout = 0f;
+
+    [Header("Respawn Grounding")]
+    [Tooltip("Layer(s) considered ground for snapping after teleport.")]
+    [SerializeField] private LayerMask groundLayerMask = 1;
+    [Tooltip("How far down we search for ground below the respawn point.")]
+    [SerializeField] private float groundSnapMaxDistance = 5f;
+    [Tooltip("Small offset above ground to avoid clipping into colliders.")]
+    [SerializeField] private float groundSkin = 0.02f;
+
     private int currentHP;
     private UIController uiController;
     private PlayerMovement playerMovement;
+
     private bool isDead = false;
     private bool isRespawning = false;
+
+    // Run id to cancel stale coroutines/events
+    private int respawnRunId = 0;
+
+    // Animation event flag
+    private bool deathAnimCompletedFlag = false;
 
     void Start()
     {
@@ -36,7 +75,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (isDead)
         {
-            Debug.Log($"Damage ignored - Player is already dead");
+            Debug.Log("Damage ignored - Player is already dead");
             return;
         }
 
@@ -52,6 +91,7 @@ public class PlayerHealth : MonoBehaviour
 
         Debug.Log($"Player took {damage} damage. HP: {previousHP} -> {currentHP}/{maxHP}");
 
+        // Trigger hurt animation if still alive
         if (currentHP > 0 && playerMovement != null)
         {
             playerMovement.TriggerHurt();
@@ -94,32 +134,76 @@ public class PlayerHealth : MonoBehaviour
         }
 
         isDead = true;
-        Debug.Log("Player died! Triggering death animation immediately...");
-
-        if (uiController != null)
-        {
-            uiController.SetPlayerDeadState(true);
-            Debug.Log("UI buttons disabled - player is dead");
-        }
-
-        if (playerMovement != null)
-        {
-            playerMovement.TriggerDeath();
-        }
-
-        StartCoroutine(RespawnSequence());
-    }
-
-    private IEnumerator RespawnSequence()
-    {
-        Debug.Log("Starting respawn sequence...");
         isRespawning = true;
 
-        yield return new WaitForSeconds(3.0f); // wait death anim
+        // Start a new run; cancel any pending unlocks from older runs
+        int runId = ++respawnRunId;
+        deathAnimCompletedFlag = false;
 
-        Debug.Log("Respawning player...");
+        Debug.Log("Player died! Triggering death animation...");
 
-        // Resolve respawn point with robust fallback
+        // Disable UI buttons immediately
+        uiController?.SetPlayerDeadState(true);
+
+        // Trigger death animation
+        playerMovement?.TriggerDeath();
+
+        // Start respawn sequence
+        StartCoroutine(RespawnSequence(runId));
+    }
+
+    private IEnumerator RespawnSequence(int runId)
+    {
+        Debug.Log($"[Respawn] Sequence started (run {runId})");
+
+        // 1) Wait for death animation end
+        if (useDeathAnimEvent)
+        {
+            float maxWait = deathAnimEventTimeout > 0f ? deathAnimEventTimeout : Mathf.Max(0.01f, deathAnimationDuration);
+            float t = 0f;
+            while (!deathAnimCompletedFlag && t < maxWait)
+            {
+                if (runId != respawnRunId) yield break; // cancelled by a new death
+                t += Time.unscaledDeltaTime;
+                yield return null;
+            }
+            if (!deathAnimCompletedFlag)
+            {
+                Debug.LogWarning($"[Respawn] Death animation event not received within {maxWait}s. Continuing.");
+            }
+        }
+        else
+        {
+            if (deathAnimationDuration > 0f)
+                yield return new WaitForSeconds(deathAnimationDuration);
+        }
+
+        if (runId != respawnRunId) yield break;
+
+        // Optionally unlock UI right after death animation
+        if (uiUnlockMoment == UIUnlockMoment.AfterDeathAnimation)
+        {
+            if (uiUnlockDelay > 0f) yield return new WaitForSeconds(uiUnlockDelay);
+            if (runId != respawnRunId) yield break;
+            uiController?.SetPlayerDeadState(false);
+            Debug.Log("[Respawn] UI unlocked after death animation (by setting)");
+        }
+
+        // 2) Optional hold BEFORE teleport
+        if (preTeleportDelay > 0f)
+        {
+            float elapsed = 0f;
+            while (elapsed < preTeleportDelay)
+            {
+                if (runId != respawnRunId) yield break;
+                elapsed += Time.unscaledDeltaTime;
+                yield return null;
+            }
+        }
+
+        if (runId != respawnRunId) yield break;
+
+        // 3) Teleport to checkpoint
         Vector3 respawnPos;
         string source = TryResolveRespawnPoint(out respawnPos) ? "GameDataManager/PlayerPrefs" : "CurrentPosition";
         if (source == "CurrentPosition")
@@ -128,60 +212,100 @@ public class PlayerHealth : MonoBehaviour
         }
 
         transform.position = respawnPos;
+
         var rb = GetComponent<Rigidbody2D>();
         if (rb != null) rb.linearVelocity = Vector2.zero;
 
-        Debug.Log($"Player respawned at position: {transform.position} (source: {source})");
+        Debug.Log($"[Respawn] Teleported to {transform.position} (source: {source})");
 
+        // 3b) Snap to ground so jump/attacks are available instantly
+        SnapToGround();
+
+        // 4) Restore HP and mark not dead
         currentHP = maxHP;
         isDead = false;
 
-        if (uiController != null)
-        {
-            uiController.UpdateHealth(currentHP);
-        }
+        uiController?.UpdateHealth(currentHP);
 
+        // 5) Let things settle
         yield return new WaitForEndOfFrame();
         yield return new WaitForFixedUpdate();
 
+        if (runId != respawnRunId) yield break;
+
+        // 6) Now mark respawning false and notify movement to fully reset
         isRespawning = false;
 
-        if (uiController != null)
+        playerMovement?.OnRespawnComplete();
+
+        // 7) Or unlock UI after teleport (recommended default)
+        if (uiUnlockMoment == UIUnlockMoment.AfterTeleport)
         {
-            uiController.SetPlayerDeadState(false);
-            Debug.Log("UI buttons RE-ENABLED - player fully respawned");
+            if (uiUnlockDelay > 0f) yield return new WaitForSeconds(uiUnlockDelay);
+            if (runId != respawnRunId) yield break;
+            uiController?.SetPlayerDeadState(false);
+            Debug.Log("[Respawn] UI unlocked after teleport (by setting)");
         }
 
-        if (playerMovement != null)
-        {
-            playerMovement.OnRespawnComplete();
-        }
+        Debug.Log($"[Respawn] Sequence complete (run {runId})");
+    }
 
-        Debug.Log($"Player FULLY respawned with full HP: {currentHP}/{maxHP} - IsAlive: {IsAlive()} - Respawning: {isRespawning}");
+    private void SnapToGround()
+    {
+        // Raycast down from a bit above current position
+        float castStartY = transform.position.y + 0.5f;
+        Vector2 origin = new Vector2(transform.position.x, castStartY);
+        RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, groundSnapMaxDistance, groundLayerMask);
+
+        if (hit.collider != null)
+        {
+            float halfHeight = 0.9f;
+            var capsule = GetComponent<CapsuleCollider2D>();
+            if (capsule != null)
+                halfHeight = (capsule.size.y * Mathf.Abs(transform.localScale.y)) * 0.5f;
+
+            float newY = hit.point.y + halfHeight + groundSkin;
+            transform.position = new Vector3(transform.position.x, newY, transform.position.z);
+
+            var rb = GetComponent<Rigidbody2D>();
+            if (rb != null) rb.linearVelocity = Vector2.zero;
+
+            Debug.Log($"[Respawn] Snapped to ground at {hit.point}, newY={newY}");
+        }
+    }
+
+    private IEnumerator UnlockUIAfterDelay(float delay)
+    {
+        if (delay > 0f)
+            yield return new WaitForSeconds(delay);
+
+        uiController?.SetPlayerDeadState(false);
+        Debug.Log("[Respawn] UI unlocked (delayed)");
+    }
+
+    // Animator event hook (call from the end of your Death animation clip)
+    // Add an Animation Event on the last frame: function name = OnDeathAnimationComplete
+    public void OnDeathAnimationComplete()
+    {
+        deathAnimCompletedFlag = true;
+        Debug.Log("[Respawn] Death animation event received");
     }
 
     // Reads GameDataManager first, then PlayerPrefs as fallback
     private bool TryResolveRespawnPoint(out Vector3 pos)
     {
-        // Default
         pos = transform.position;
 
-        // 1) GameDataManager
         if (GameDataManager.Instance != null)
         {
             var data = GameDataManager.Instance.GetPlayerData();
-            if (data != null)
+            if (data != null && data.RespawnPoint != default(Vector3))
             {
-                // Consider Vector3.zero as "unset" for safety
-                if (data.RespawnPoint != default(Vector3))
-                {
-                    pos = data.RespawnPoint;
-                    return true;
-                }
+                pos = data.RespawnPoint;
+                return true;
             }
         }
 
-        // 2) PlayerPrefs fallback
         if (PlayerPrefs.HasKey("RespawnX"))
         {
             pos = new Vector3(
@@ -197,28 +321,30 @@ public class PlayerHealth : MonoBehaviour
 
     public void Revive()
     {
+        // Cancel any pending respawn sequence
+        ++respawnRunId;
+
         Debug.Log("Reviving player instantly...");
         isDead = false;
         isRespawning = false;
         currentHP = maxHP;
 
-        if (uiController != null)
-        {
-            uiController.UpdateHealth(currentHP);
-            uiController.SetPlayerDeadState(false);
-        }
+        uiController?.UpdateHealth(currentHP);
+        uiController?.SetPlayerDeadState(false);
 
-        if (playerMovement != null)
-        {
-            playerMovement.OnRespawnComplete();
-        }
+        playerMovement?.OnRespawnComplete();
 
         Debug.Log($"Player revived instantly - IsAlive: {IsAlive()}");
     }
 
     void OnValidate()
     {
-        if (maxHP <= 0)
-            maxHP = 100;
+        if (maxHP <= 0) maxHP = 100;
+        if (deathAnimationDuration < 0f) deathAnimationDuration = 0f;
+        if (preTeleportDelay < 0f) preTeleportDelay = 0f;
+        if (uiUnlockDelay < 0f) uiUnlockDelay = 0f;
+        if (deathAnimEventTimeout < 0f) deathAnimEventTimeout = 0f;
+        if (groundSnapMaxDistance < 0.1f) groundSnapMaxDistance = 0.1f;
+        if (groundSkin < 0f) groundSkin = 0f;
     }
 }
