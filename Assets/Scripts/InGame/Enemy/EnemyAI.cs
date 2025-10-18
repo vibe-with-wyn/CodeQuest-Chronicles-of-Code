@@ -9,10 +9,10 @@ public class EnemyAttackData
     public int damage = 15;
     public float cooldown = 2.0f;
     public float activeTime = 0.4f;
-    
+
     [Header("Attack Timing")] // NEW: Attack timing configuration
     [SerializeField] private float attackDelay = 0.3f; // NEW: Delay before attack collider activates (when sword extends)
-    
+
     public float AttackDelay => attackDelay;
 }
 
@@ -75,7 +75,7 @@ public class EnemyAI : MonoBehaviour
 
     // Ground detection variables
     private bool isGrounded = true;
-    
+
     // NEW: Attack delay tracking
     private bool isAttackColliderPending = false; // Tracks if attack collider activation is scheduled
 
@@ -197,7 +197,7 @@ public class EnemyAI : MonoBehaviour
         {
             // Get the EnemyAttackCollider script component
             enemyAttackCollider = attackColliderTransform.GetComponent<EnemyAttackCollider>();
-            
+
             // Get the CircleCollider2D component (for range calculations only)
             attackCollider = attackColliderTransform.GetComponent<CircleCollider2D>();
 
@@ -283,19 +283,19 @@ public class EnemyAI : MonoBehaviour
     private bool IsGroundAhead()
     {
         Vector2 rayStart = (Vector2)transform.position + groundCheckOffset + new Vector2(facingDirection * groundCheckDistance, 0);
-        
+
         RaycastHit2D hit = Physics2D.Raycast(rayStart, Vector2.down, groundRayLength, groundLayerMask);
-        
+
         // Debug visualization
         Debug.DrawRay(rayStart, Vector2.down * groundRayLength, hit.collider != null ? Color.green : Color.red, 0.1f);
-        
+
         bool groundDetected = hit.collider != null && hit.collider.CompareTag("Ground");
-        
+
         if (!groundDetected)
         {
             Debug.Log($"No ground detected ahead! Enemy at {transform.position}, facing {facingDirection}, ray from {rayStart}");
         }
-        
+
         return groundDetected;
     }
 
@@ -306,7 +306,7 @@ public class EnemyAI : MonoBehaviour
     {
         Vector2 rayStart = (Vector2)transform.position + groundCheckOffset;
         RaycastHit2D hit = Physics2D.Raycast(rayStart, Vector2.down, groundRayLength * 0.6f, groundLayerMask);
-        
+
         bool grounded = hit.collider != null && hit.collider.CompareTag("Ground");
         return grounded;
     }
@@ -549,7 +549,7 @@ public class EnemyAI : MonoBehaviour
                 Debug.Log("Attack collider activation CANCELLED - Player is invalid or dead");
             else if (!isAttackColliderPending)
                 Debug.Log("Attack collider activation CANCELLED - Attack was cancelled");
-            
+
             isAttackColliderPending = false;
             return;
         }
@@ -648,7 +648,13 @@ public class EnemyAI : MonoBehaviour
         PerformImmediateDeathCleanup();
         TriggerDeathAnimation();
 
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1f);
+
+        // NEW: Immediately stop animator to prevent any frame flashing
+        if (animator != null)
+        {
+            animator.enabled = false;
+        }
 
         PermanentlyHideEnemy();
         this.enabled = false;
@@ -707,6 +713,12 @@ public class EnemyAI : MonoBehaviour
     {
         Debug.Log($"Permanently hiding enemy {gameObject.name}");
 
+        // NEW: Disable sprite renderer immediately to prevent flashing
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.enabled = false;
+        }
+
         if (animatorChild != null)
         {
             animatorChild.gameObject.SetActive(false);
@@ -733,7 +745,10 @@ public class EnemyAI : MonoBehaviour
 
     private IEnumerator FinalDeactivation()
     {
+        // NEW: Wait for TWO frames instead of one to ensure all rendering is complete
         yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        
         gameObject.SetActive(false);
         Debug.Log($"Enemy {gameObject.name} main GameObject deactivated");
     }
@@ -780,17 +795,17 @@ public class EnemyAI : MonoBehaviour
         if (player == null) return;
 
         Vector2 directionToPlayer = (player.position - transform.position).normalized;
-        
+
         // Check if we're moving in the direction where there's no ground
         bool wouldMoveIntoCliff = Mathf.Sign(directionToPlayer.x) == Mathf.Sign(facingDirection) && !IsGroundAhead();
-        
+
         if (wouldMoveIntoCliff)
         {
             // Stop movement but face the player - STILL CHECK FOR ATTACK RANGE
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             SetAnimatorParameters(false, false);
             UpdateFacingDirection(directionToPlayer.x);
-            
+
             Debug.Log("No ground ahead while chasing - stopped movement but will still check for EnemyAttackCollider range");
             // IMPORTANT: Don't return here - continue to CheckAttackRange()
         }
@@ -850,22 +865,22 @@ public class EnemyAI : MonoBehaviour
             attackColliderOffset.y,                    // Y offset
             0
         );
-        
+
         // Calculate distance from EnemyAttackCollider position to player
         float actualDistance = Vector2.Distance(new Vector2(attackPosition.x, attackPosition.y), new Vector2(player.position.x, player.position.y));
-        
+
         // Get the EnemyAttackCollider radius
         float attackRadius = attackCollider != null ? attackCollider.radius : 0.5f;
-        
+
         // Check if player is within the EnemyAttackCollider's reach
         bool inRange = actualDistance <= (attackRadius + 0.1f); // Small buffer for reliability
-        
+
         // Also check height difference to ensure we can actually hit
         float heightDifference = Mathf.Abs(player.position.y - transform.position.y);
         bool heightOK = heightDifference <= 1.5f; // Allow some vertical tolerance
-        
+
         bool finalResult = inRange && heightOK;
-        
+
         if (finalResult)
         {
             Debug.Log($"Player IS in EnemyAttackCollider range! Distance: {actualDistance:F2}, AttackRadius: {attackRadius:F2}, Height: {heightDifference:F2}, AttackPos: {attackPosition}");
@@ -920,7 +935,7 @@ public class EnemyAI : MonoBehaviour
             attackColliderTransform.gameObject.SetActive(false);
             Debug.Log("EnemyAttackCollider disabled");
         }
-        
+
         // NEW: Cancel any pending activations
         CancelInvoke(nameof(ActivateDelayedAttackCollider));
         isAttackColliderPending = false;
